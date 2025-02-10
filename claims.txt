@@ -1,0 +1,93 @@
+Title: Claims
+Name: Advait Deshmukh
+Declaration of authorship: I hereby confirm that the work presented in this project is my own.
+
+
+=================================================
+----------------------Files----------------------
+=================================================
+
+
+*All the files I submitted, asm.cpp, emu.cpp and claims.txt, have my name and student id at the start, along with a declaration of authorship.
+
+*The evidence for Assembler including the output files from the seven test examples has also been uploaded. 
+They are test1(3 output files), test2(1 output files), test3(3 output files), test4(3 output files),
+test5(3 output files), bubbleSort(3 output files), custom(3 output files) and sum(3 output files).
+All the test files have been tested and work properly.
+
+* Both of the programs did not show any errors or warnings when I compiled them with g++ asm.cpp -o asm and g++ emu.cpp -o emu.
+
+
+================================================
+------------------Assumptions-------------------
+================================================
+
+
+* the 'data' and 'SET' mnemonics are always used at the end of the code (the data segment is after the text segment)
+
+
+=================================================
+----------Program format and structure-----------
+=================================================
+
+
+1) Assembler:
+
+* It is a one read assembler.
+* I have used map data structure to store:
+	instructionTable,
+	symbolTable,
+	lineWiseSymbolTable,
+	setLabels
+* I have used a struct 'codeLine' to store for each line:
+	emptyLine (bool)
+	label
+	isLabelPresent (bool)
+	mnemonic
+	operand
+	operandValueType
+* I am using a vector of these structs 'codeTable' to store each line then performing the 2nd pass on this.
+
+* Every instruction is implemented including the SET instruction (SET instruction demonstrated in test3 program)
+* The assembler can successfully diagnose errors like: (proof can be seen in test2.log file)
+	duplicate label definition,
+	missing label definition,
+	not allowed label names,
+	invalid operands, 
+	missing operands,
+	unexpected operands,
+	invalid syntax, 
+	invalid mnemonic
+* If an error is found only log file is generated.
+
+* The assembler has successfully generated advanced listing files for every test file where there are no errors present (proof in files: test1.lst, test3.lst, test4.lst, test5.lst, bubbleSort.lst, sum.lst, custom.lst)
+
+* An .asm file with no errors produces 3 output files:
+	.log file: errors if any, the location of the listing file and the object file
+	.lst file: advanced listing file (format is: program counter, machine code, instruction)
+	.o file: the machine code
+
+* I have used consistent and sensible formatting with sensible program structure.
+* I have used sensible variable, function and type names with explanatory comments.
+
+
+2)Emulator:
+
+* I have used map data structure to store the instructionTable and the opcodeWiseInstructionTable
+* Have used vector of length 2^24 to store the memory
+* Has options for the following commands:
+	-trace: show instruction trace
+	-before: show memory dump before execution
+	-after:	show memory dump after execution
+	-isa: show the instructions
+
+* Detects segmentation fault error if programs accessing memory out of boundary.
+* Detects infinite loop by checking if number of instructions run are more than 2^24
+
+
+=================================================
+-----------------------Tests---------------------
+=================================================
+
+All test files gave output files without errors and when traced using the emulator provided expected results.
+All files without errors generated .lst, .log and .o files when assembled.

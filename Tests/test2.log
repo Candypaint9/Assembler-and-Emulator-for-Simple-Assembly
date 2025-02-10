@@ -1,0 +1,9 @@
+Error at line 4: Duplicate label definition
+Error at line 5: No such label defined
+Error at line 6: Invalid operand
+Error at line 7: Missing operand
+Error at line 8: Unexpected operand
+Error at line 9: Invalid syntax
+Error at line 10: Not allowed label name
+Error at line 11: Invalid mnemonic
+Error at line 12: Invalid mnemonic
